@@ -1,0 +1,29 @@
+# Scan the staging deployment when a release is published, and send findings to code scanning.
+name: Shannon release scan
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    # For larger repos or slower model providers, use a self-hosted runner (GitHub-hosted caps at 6h):
+    # https://docs.github.com/actions/hosting-your-own-runners/adding-self-hosted-runners
+    # runs-on: [self-hosted, linux]
+    # timeout-minutes: 720
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Shannon
+        uses: ezl-test/shannon@v3
+        with:
+          url: ${{ vars.STAGING_URL }}
+          config: .shannon/full.yaml
+          fail-on-severity: high
+          upload-sarif: true
+          api-key: ${{ secrets.SHANNON_AI_API_KEY }}

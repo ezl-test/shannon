@@ -25,6 +25,8 @@ npx @ezlkg/shn@latest
 
 <sub>The interactive launcher will guide you through setup and your first pentest.</sub>
 
+**Run Shannon in GitHub Actions:** [Setup, inputs, credentials, and workflow examples](docs/github-action.md).
+
 ---
 
 <a href="https://discord.gg/9ZqQPuhJB7"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/discord_button_dark.png"><source media="(prefers-color-scheme: light)" srcset="./assets/discord_button_light.png"><img src="./assets/discord_button_light.png" height="40" alt="Join Discord"></picture></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://keygraph.io/"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/keygraph_button_dark.png"><source media="(prefers-color-scheme: light)" srcset="./assets/keygraph_button_light.png"><img src="./assets/keygraph_button_light.png" height="40" alt="Visit Keygraph.io"></picture></a>
@@ -182,7 +184,7 @@ For source builds, authenticated scans, provider-specific setup, and platform no
 
 ## CI/CD Integrations
 
-Shannon can run continuously against deployed staging and development environments through official integrations for [GitHub Actions](https://github.com/KeygraphHQ/shannon-action) and [GitLab CI/CD](https://gitlab.com/KeygraphHQ/shannon-ci).
+Shannon can run continuously against deployed staging and development environments through official integrations for [GitHub Actions](docs/github-action.md) and [GitLab CI/CD](https://gitlab.com/KeygraphHQ/shannon-ci).
 
 Both integrations:
 
@@ -196,6 +198,8 @@ Both integrations:
 A code-analysis hypothesis does not fail the pipeline. Severity gates count only findings with `status: exploited`.
 
 ### GitHub Actions
+
+See the [Shannon GitHub Action guide](docs/github-action.md) for setup, inputs, outputs, credentials, version selection, and example workflows. The `v3` alias becomes available after the first combined product and Action release.
 
 ```yaml
 name: Shannon Pentest
@@ -214,7 +218,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Shannon
-        uses: KeygraphHQ/shannon-action@v1
+        uses: ezl-test/shannon@v3
         with:
           url: https://staging.example.com
           api-key: ${{ secrets.SHANNON_AI_API_KEY }}
@@ -231,7 +235,7 @@ Requirements:
 - access to the running staging or development target; and
 - a model-provider credential stored as a GitHub Actions secret.
 
-See the [Shannon GitHub Action documentation](https://github.com/KeygraphHQ/shannon-action) and [GitHub Marketplace listing](https://github.com/marketplace/actions/shannon-ai-pentester).
+See the [Shannon GitHub Action documentation](docs/github-action.md) and [ready-to-copy workflows](examples/github-actions).
 
 ## Editions
 

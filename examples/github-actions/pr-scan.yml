@@ -1,0 +1,26 @@
+# Scan a pull request's deployed preview and fail it on a demonstrated critical vulnerability.
+name: Shannon PR scan
+
+on:
+  pull_request: {}
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    # For larger repos or slower model providers, use a self-hosted runner (GitHub-hosted caps at 6h):
+    # https://docs.github.com/actions/hosting-your-own-runners/adding-self-hosted-runners
+    # runs-on: [self-hosted, linux]
+    # timeout-minutes: 720
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Shannon
+        uses: ezl-test/shannon@v3
+        with:
+          url: ${{ vars.PREVIEW_URL }}
+          repo: ${{ github.workspace }}
+          fail-on-severity: critical
+          api-key: ${{ secrets.SHANNON_AI_API_KEY }}
