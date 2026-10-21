@@ -13,6 +13,7 @@ concurrency:
 jobs:
   preflight:
     name: Preflight
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -209,7 +210,7 @@ jobs:
           fi
 
   release:
-    name: Create GitHub release
+    name: Release product and GitHub Action
     needs: [preflight, publish-npm]
     runs-on: ubuntu-latest
     permissions:
@@ -233,7 +234,43 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create GitHub release
+      - name: Create shared product and Action release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release@25
+
+      - name: Update Action major and minor aliases
+        env:
+          RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          SOURCE_TAG="v$RELEASE_VERSION"
+          gh release view "$SOURCE_TAG" >/dev/null
+          git fetch origin --tags --force
+          SOURCE_COMMIT=$(git rev-parse "refs/tags/$SOURCE_TAG^{commit}")
+          test "$SOURCE_COMMIT" = "$(git rev-parse HEAD)"
+          MAJOR="${SOURCE_TAG%%.*}"
+          MINOR="${SOURCE_TAG%.*}"
+          PUSH_REFS=()
+          LEASES=()
+          for ALIAS in "$MAJOR" "$MINOR"; do
+            CURRENT=$(git ls-remote --refs origin "refs/tags/$ALIAS" | cut -f1)
+            if [ -n "$CURRENT" ]; then
+              CURRENT_VERSION=$(git tag --points-at "$CURRENT" --list 'v*.*.*' | sort -V | tail -1)
+              if [ -z "$CURRENT_VERSION" ]; then
+                echo "Cannot determine the release behind $ALIAS; refusing to overwrite it."
+                exit 1
+              fi
+              NEWEST=$(printf '%s\n' "$CURRENT_VERSION" "$SOURCE_TAG" | sort -V | tail -1)
+              if [ "$NEWEST" != "$SOURCE_TAG" ]; then
+                echo "Keeping $ALIAS at newer release $CURRENT_VERSION."
+                continue
+              fi
+            fi
+            LEASES+=("--force-with-lease=refs/tags/$ALIAS:$CURRENT")
+            PUSH_REFS+=("$SOURCE_COMMIT:refs/tags/$ALIAS")
+          done
+          if [ "${#PUSH_REFS[@]}" -gt 0 ]; then
+            git push --atomic "${LEASES[@]}" origin "${PUSH_REFS[@]}"
+          fi
