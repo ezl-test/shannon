@@ -30,7 +30,7 @@ It analyzes your source code, identifies attack paths, and executes real exploit
 <p><strong>Launch Shannon</strong></p>
 
 ```bash
-npx @keygraph/shannon@latest
+npx @ezlkg/shn@latest
 ```
 
 <sub>The interactive launcher will guide you through setup and your first pentest.</sub>
@@ -153,10 +153,10 @@ These reports are from Shannon OSS scans of Photoview 2.4.0, one of the applicat
 
 ```bash
 # Configure credentials with the interactive wizard.
-npx @keygraph/shannon@latest setup
+npx @ezlkg/shn@latest setup
 
 # Run a pentest against a source-available target.
-npx @keygraph/shannon@latest start \
+npx @ezlkg/shn@latest start \
   -u https://your-app.com \
   -r /path/to/your/repo
 ```
@@ -363,7 +363,7 @@ See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for licensing and attribu
 
 - US/EU: Thursday, 10:00 AM PT
 - Asia: Thursday, 2:00 PM IST
-- [Book a slot](https://cal.com/george-flores-keygraph/shannon-community-office-hours)
+- [Book a slot](https://cal.com/george-flores-ezlkgps/shannon-community-office-hours)
 
 [Join Discord](https://discord.gg/cmctpMBXwE) to ask questions, share feedback, and connect with other Shannon users.
 
@@ -464,7 +464,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 Shannon can scan any repository on your machine. Pass an absolute or relative path with `-r`.
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo
 ./shannon start -u https://example.com -r ./relative/path
 ```
 
@@ -475,10 +475,10 @@ The target repository is mounted read-only inside the worker container.
 Monitor progress:
 
 ```bash
-npx @keygraph/shannon logs [<workspace>]     # defaults to the single running scan, else the most recent
-npx @keygraph/shannon status [<workspace>]   # same default target; add --json for a machine-readable snapshot
-npx @keygraph/shannon scans
-npx @keygraph/shannon version
+npx @ezlkg/shn logs [<workspace>]     # defaults to the single running scan, else the most recent
+npx @ezlkg/shn status [<workspace>]   # same default target; add --json for a machine-readable snapshot
+npx @ezlkg/shn scans
+npx @ezlkg/shn version
 ```
 
 With no workspace, `logs` and `status` follow the single running scan; when several are running, name one.
@@ -509,9 +509,9 @@ open http://localhost:8233
 Stop Shannon:
 
 ```bash
-npx @keygraph/shannon stop [<workspace>] # stop one scan (defaults to the single running scan; confirms first; add --yes/-y to skip)
-npx @keygraph/shannon stop --all         # stop all scans (Temporal stays up)
-npx @keygraph/shannon reset              # stop everything and wipe all Temporal data (type 'confirm' to proceed; cannot be skipped)
+npx @ezlkg/shn stop [<workspace>] # stop one scan (defaults to the single running scan; confirms first; add --yes/-y to skip)
+npx @ezlkg/shn stop --all         # stop all scans (Temporal stays up)
+npx @ezlkg/shn reset              # stop everything and wipe all Temporal data (type 'confirm' to proceed; cannot be skipped)
 ```
 
 Source-build equivalents:
@@ -526,25 +526,25 @@ Usage examples:
 
 ```bash
 # Basic pentest.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo
 
 # With a configuration file.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml
 
 # Custom output directory.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -o ./my-reports
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -o ./my-reports
 
 # Named workspace.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w q1-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w q1-audit
 
 # Stream the log until the scan finishes, then exit on its outcome (useful in CI).
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo --follow
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo --follow
 
 # Validate the configured login only, then stop (no pentest or report).
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml --validate-auth
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml --validate-auth
 
 # List running and completed scans.
-npx @keygraph/shannon scans
+npx @ezlkg/shn scans
 ```
 
 Source-build examples:
@@ -604,7 +604,7 @@ Source-build mode resolves credentials from:
 `npx` mode resolves credentials from:
 
 1. Environment variables
-2. `~/.shannon/config.toml`, created by `npx @keygraph/shannon setup`
+2. `~/.shannon/config.toml`, created by `npx @ezlkg/shn setup`
 
 Environment variables always win, so you can override saved config for a single session without editing files.
 
@@ -619,7 +619,7 @@ cp configs/example-config.yaml ./my-app-config.yaml
 Run with:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c ./my-app-config.yaml
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c ./my-app-config.yaml
 ```
 
 Source-build equivalent:
@@ -777,7 +777,7 @@ login_flow:
 To confirm your login flow works before committing to a full scan, add `--validate-auth` to `start`:
 
 ```bash
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/repo -c config.yaml --validate-auth
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/repo -c config.yaml --validate-auth
 ```
 
 The run performs preflight and the single real login, then stops. No pentest, reconciliation, or report
@@ -826,7 +826,7 @@ This path covers providers whose credential is a single API key. Providers that 
 
 A model the catalogue does not carry is reachable by describing it yourself. See [Custom model configuration](#custom-model-configuration).
 
-`npx @keygraph/shannon setup` exposes this as the **Other provider** option.
+`npx @ezlkg/shn setup` exposes this as the **Other provider** option.
 
 > [!IMPORTANT]
 > Models are validated against the harness catalogue, but capability varies. A model that does not follow Shannon's instructions or tool-use constraints reliably will produce weaker pentests. Evaluate the model you choose against your own targets before depending on its results.
@@ -845,14 +845,14 @@ This applies to the Anthropic and OpenAI providers, including when either is rea
 To confirm your model is ready before committing to a full scan, add `--validate-model` to `start`:
 
 ```bash
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/repo --validate-model
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/repo --validate-model
 ```
 
 The run performs the preflight model checks only — credential and registry resolution for any provider, plus a single cyber-access verification against Anthropic and OpenAI that trips the cyber safeguard if your account is not approved — then stops. No pentest or report is produced, and it needs no config. A decline fails the run with the vendor's enrollment link.
 
 ## Suggested models
 
-These are the models `npx @keygraph/shannon setup` offers, best-first. They are suggestions: the wizard also takes a typed model ID, and `SHANNON_AI_MODEL` accepts any model in the provider's catalogue.
+These are the models `npx @ezlkg/shn setup` offers, best-first. They are suggestions: the wizard also takes a typed model ID, and `SHANNON_AI_MODEL` accepts any model in the provider's catalogue.
 
 | Provider | Suggested model IDs |
 | --- | --- |
@@ -892,7 +892,7 @@ Source-build mode reads the same variables from a `.env` file.
 
 ## AWS Bedrock
 
-Run `npx @keygraph/shannon setup` and select **AWS Bedrock**, or export directly:
+Run `npx @ezlkg/shn setup` and select **AWS Bedrock**, or export directly:
 
 ```bash
 export AWS_REGION=us-east-1
@@ -931,14 +931,14 @@ export SHANNON_AI_MODEL=openai:gpt-6-sol
 export SHANNON_AI_BASE_URL=https://llm-gateway.example.com/v1
 ```
 
-`npx @keygraph/shannon setup` configures a base URL two ways: **Custom Base URL** covers the common Anthropic Messages and OpenAI Responses LLM gateways, and **Other provider** takes any provider ID plus an optional base URL of its own.
+`npx @ezlkg/shn setup` configures a base URL two ways: **Custom Base URL** covers the common Anthropic Messages and OpenAI Responses LLM gateways, and **Other provider** takes any provider ID plus an optional base URL of its own.
 
 ## Custom model configuration
 
 A custom model configuration is a Pi `models.json` file that describes a model the harness catalogue does not carry: one a router or gateway serves under its own ID, or a local server (see [Local and self-hosted models](#local-and-self-hosted-models)). You pass it with `--models-config`, and Shannon merges its definitions over the catalogue so `SHANNON_AI_MODEL` can then name the model like any other:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo --models-config ./models.json
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo --models-config ./models.json
 ```
 
 ```bash
@@ -1064,7 +1064,7 @@ Before running a pentest, review the [cyber safeguards requirements](#cyber-safe
    export SHANNON_AI_MODEL=openai-codex:gpt-6-sol
    ```
 
-4. In npx mode, run `npx @keygraph/shannon start ...` from the same shell. In source-build mode, add the two variables to `.env` and run `./shannon start ...`.
+4. In npx mode, run `npx @ezlkg/shn start ...` from the same shell. In source-build mode, add the two variables to `.env` and run `./shannon start ...`.
 
 Supported Codex models are `gpt-6-sol`, `gpt-5.6-sol`, `gpt-5.5`, and `gpt-5.4`.
 
@@ -1082,7 +1082,7 @@ An xAI subscription can run Shannon. Shannon reuses a login created by Pi.
    export SHANNON_AI_MODEL=xai:grok-4.7
    ```
 
-4. In npx mode, run `npx @keygraph/shannon start ...` from the same shell. In source-build mode, add the two variables to `.env` and run `./shannon start ...`.
+4. In npx mode, run `npx @ezlkg/shn start ...` from the same shell. In source-build mode, add the two variables to `.env` and run `./shannon start ...`.
 
 The suggested Grok model is `grok-4.7`.
 
@@ -1101,11 +1101,11 @@ Before running a pentest, review the [cyber safeguards requirements](#cyber-safe
 2. Run the setup flow for the final `shannon-v1` release:
 
    ```bash
-   npx @keygraph/shannon@1.9.0 setup
+   npx @ezlkg/shn@1.9.0 setup
    ```
 
 3. Select **OAuth Token** and enter the token generated by Claude Code.
-4. Start the pentest with `npx @keygraph/shannon@1.9.0 start ...`.
+4. Start the pentest with `npx @ezlkg/shn@1.9.0 start ...`.
 
 These instructions apply only to `shannon-v1`.
 
@@ -1139,7 +1139,7 @@ model = "anthropic:claude-sonnet-4-6"
 api_key = "your-api-key"
 ```
 
-Re-run `npx @keygraph/shannon setup` to regenerate the file.
+Re-run `npx @ezlkg/shn setup` to regenerate the file.
 
 ---
 
@@ -1175,8 +1175,8 @@ Install Docker Desktop on Windows and enable the WSL2 backend under **Settings >
 Run Shannon inside WSL:
 
 ```bash
-npx @keygraph/shannon setup
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/your-repo
+npx @ezlkg/shn setup
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/your-repo
 ```
 
 Source-build equivalent:
@@ -1205,7 +1205,7 @@ macOS works with Docker Desktop installed.
 Docker containers cannot reach `localhost` on your host machine. Use `host.docker.internal` instead:
 
 ```bash
-npx @keygraph/shannon start -u http://host.docker.internal:3000 -r /path/to/repo
+npx @ezlkg/shn start -u http://host.docker.internal:3000 -r /path/to/repo
 ```
 
 Source-build equivalent:
@@ -1257,25 +1257,25 @@ Shannon uses workspaces to store scan state, logs, prompts, and deliverables. Wo
 Start with a named workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w my-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w my-audit
 ```
 
 Resume the same workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w my-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w my-audit
 ```
 
 Resume an auto-named workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w example-com_shannon-1771007534808
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w example-com_shannon-1771007534808
 ```
 
 List running and completed scans:
 
 ```bash
-npx @keygraph/shannon scans
+npx @ezlkg/shn scans
 ```
 
 Source-build equivalents:

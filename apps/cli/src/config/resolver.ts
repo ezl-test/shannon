@@ -109,7 +109,7 @@ function loadTOML(): TOMLConfig | null {
     return parseTOML(content) as TOMLConfig;
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
-    fail(`Failed to parse ${configPath}: ${message}`, `Run 'npx @keygraph/shannon setup' to reconfigure.`);
+    fail(`Failed to parse ${configPath}: ${message}`, `Run 'npx @ezlkg/shn setup' to reconfigure.`);
   }
 }
 
@@ -279,7 +279,7 @@ export function resolveConfig(): void {
     fail(
       'Invalid configuration:',
       ...errors.map((err) => `  - ${err}`),
-      `Run 'npx @keygraph/shannon setup' to reconfigure.`,
+      `Run 'npx @ezlkg/shn setup' to reconfigure.`,
     );
   }
 

@@ -105,7 +105,7 @@ body:
     attributes:
       label: CLI mode
       options:
-        - "npx (@keygraph/shannon)"
+        - "npx (@ezlkg/shn)"
         - "Local (./shannon)"
     validations:
       required: true
@@ -130,7 +130,7 @@ body:
     id: shannon-command
     attributes:
       label: Full command with all flags used (with redactions)
-      placeholder: "e.g. npx @keygraph/shannon start -u <url> -r my-repo  OR  ./shannon start -u <url> -r my-repo"
+      placeholder: "e.g. npx @ezlkg/shn start -u <url> -r my-repo  OR  ./shannon start -u <url> -r my-repo"
     validations:
       required: true
 

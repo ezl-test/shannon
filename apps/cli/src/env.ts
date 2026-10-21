@@ -160,7 +160,7 @@ function describeMissingCredential(providerId: string): string {
     const hint =
       getMode() === 'local'
         ? `Set ${requirement} in .env or export it.`
-        : `Export the variables or run 'npx @keygraph/shannon setup'.`;
+        : `Export the variables or run 'npx @ezlkg/shn setup'.`;
     return `No credentials found for provider "${providerId}". ${hint}`;
   }
 
@@ -172,7 +172,7 @@ function describeMissingCredential(providerId: string): string {
   const hint =
     getMode() === 'local'
       ? 'Set a provider API key in .env (for example ANTHROPIC_API_KEY).'
-      : "Run 'npx @keygraph/shannon setup' to get started.";
+      : "Run 'npx @ezlkg/shn setup' to get started.";
   return `No credentials configured. ${hint}`;
 }
 
@@ -218,7 +218,7 @@ export function validateCredentials(): CredentialValidation {
     const dropHint =
       getMode() === 'local'
         ? 'remove them from .env or unset them in your shell:'
-        : "unset them in your shell, or reconfigure with 'npx @keygraph/shannon setup':";
+        : "unset them in your shell, or reconfigure with 'npx @ezlkg/shn setup':";
 
     const lines = [`Credentials for more than one provider are set: ${list}.`];
     if (extraVars.length > 0) {

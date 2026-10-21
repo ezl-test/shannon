@@ -20,7 +20,7 @@ It analyzes your source code, identifies attack paths, and executes real exploit
 <p><strong>Launch Shannon</strong></p>
 
 ```bash
-npx @keygraph/shannon@latest
+npx @ezlkg/shn@latest
 ```
 
 <sub>The interactive launcher will guide you through setup and your first pentest.</sub>
@@ -143,10 +143,10 @@ These reports are from Shannon OSS scans of Photoview 2.4.0, one of the applicat
 
 ```bash
 # Configure credentials with the interactive wizard.
-npx @keygraph/shannon@latest setup
+npx @ezlkg/shn@latest setup
 
 # Run a pentest against a source-available target.
-npx @keygraph/shannon@latest start \
+npx @ezlkg/shn@latest start \
   -u https://your-app.com \
   -r /path/to/your/repo
 ```
@@ -353,7 +353,7 @@ See [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for licensing and attribu
 
 - US/EU: Thursday, 10:00 AM PT
 - Asia: Thursday, 2:00 PM IST
-- [Book a slot](https://cal.com/george-flores-keygraph/shannon-community-office-hours)
+- [Book a slot](https://cal.com/george-flores-ezlkgps/shannon-community-office-hours)
 
 [Join Discord](https://discord.gg/cmctpMBXwE) to ask questions, share feedback, and connect with other Shannon users.
 

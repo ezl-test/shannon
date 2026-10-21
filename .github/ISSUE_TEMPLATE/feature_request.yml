@@ -26,7 +26,7 @@ body:
       label: Which CLI mode does this apply to?
       options:
         - Both
-        - "npx (@keygraph/shannon)"
+        - "npx (@ezlkg/shn)"
         - "Local (./shannon)"
 
   - type: textarea

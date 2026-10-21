@@ -21,7 +21,7 @@ import { runStep, spawnCaptured, surfaceOutput } from './ui.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const NPX_IMAGE_REPO = 'keygraph/shannon';
+const NPX_IMAGE_REPO = 'ezlkgps/shannon';
 const DEV_IMAGE = 'shannon-worker';
 
 /** Docker label stamped on each worker container, mapping it back to its workspace so a single scan can be stopped by name. */
@@ -279,7 +279,7 @@ export function ensureImage(version: string): void {
       fail(
         `Failed to pull ${image}`,
         'The image may not be available for your platform yet.',
-        'Check https://hub.docker.com/r/keygraph/shannon for available tags.',
+        'Check https://hub.docker.com/r/ezlkgps/shannon for available tags.',
       );
     }
     pruneOldImages(version);
@@ -657,7 +657,7 @@ export async function stopInfra(clean: boolean): Promise<void> {
 }
 
 /**
- * Remove old keygraph/shannon images that don't match the current version.
+ * Remove old ezlkgps/shannon images that don't match the current version.
  */
 function pruneOldImages(currentVersion: string): void {
   const output = runOutput('docker', ['images', NPX_IMAGE_REPO, '--format', '{{.Tag}}']);

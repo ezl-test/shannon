@@ -1,5 +1,5 @@
 /**
- * `npx @keygraph/shannon setup` — interactive TUI wizard for one-time credential configuration.
+ * `npx @ezlkg/shn setup` — interactive TUI wizard for one-time credential configuration.
  *
  * Walks the user through selecting a provider, entering credentials, and naming
  * the model that runs the whole scan, then persists everything to
@@ -109,7 +109,7 @@ export async function setup(): Promise<void> {
 
   p.log.success(`Configuration saved to ${configPath}`);
   p.log.info(summary.join('\n'));
-  p.outro('Run `npx @keygraph/shannon start` to begin a scan.');
+  p.outro('Run `npx @ezlkg/shn start` to begin a scan.');
 }
 
 interface Selection {

@@ -1,5 +1,5 @@
 {
-  "name": "@keygraph/shannon",
+  "name": "@ezlkg/shn",
   "version": "0.0.0",
   "description": "Shannon is an autonomous white-box AI pentester for web applications and APIs, by Keygraph.",
   "type": "module",
@@ -43,7 +43,7 @@
   "homepage": "https://github.com/KeygraphHQ/shannon#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KeygraphHQ/shannon.git",
+    "url": "git+https://github.com/ezl-test/shannon.git",
     "directory": "apps/cli"
   },
   "engines": {

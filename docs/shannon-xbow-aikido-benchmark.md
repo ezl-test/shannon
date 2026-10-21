@@ -126,7 +126,7 @@ While Shannon doesn’t natively orchestrate ensembling yet, its architecture ma
 
 #### Deploy this in your CI system today
 
-Shannon v3 runs headlessly in GitHub Actions or GitLab CI. Run `npx @keygraph/shannon setup` once on the runner to store your provider key. After that, the pipeline calls `npx @keygraph/shannon start` with the target URL and repo path. Shannon pulls the worker image, mounts the checkout read-only in a throwaway container, scans, and exits. The only traffic that leaves your runner goes to the model provider you configured.
+Shannon v3 runs headlessly in GitHub Actions or GitLab CI. Run `npx @ezlkg/shn setup` once on the runner to store your provider key. After that, the pipeline calls `npx @ezlkg/shn start` with the target URL and repo path. Shannon pulls the worker image, mounts the checkout read-only in a throwaway container, scans, and exits. The only traffic that leaves your runner goes to the model provider you configured.
 
 Exploit-mode scans write SARIF 2.1.0 by default, so findings land in GitHub code scanning or GitLab's vulnerability report alongside your other scanners. Out of the box, the run fails on Critical or High findings. Lower severities show up as annotations, and the threshold is configurable.
 

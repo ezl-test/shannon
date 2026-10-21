@@ -31,10 +31,10 @@ It analyzes your source code, identifies attack paths, and executes real exploit
 
 ```bash
 # Configure credentials with the interactive wizard.
-npx @keygraph/shannon setup
+npx @ezlkg/shn setup
 
 # Run a pentest against a source-available target.
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/your-repo
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/your-repo
 ```
 
 Shannon pulls the worker image from Docker Hub, starts the required local infrastructure, mounts the target repository read-only inside an ephemeral worker container, and writes results to a local workspace.

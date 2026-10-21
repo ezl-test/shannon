@@ -46,7 +46,7 @@ export ANTHROPIC_API_KEY="your-api-key"
 Shannon can scan any repository on your machine. Pass an absolute or relative path with `-r`.
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo
 ./shannon start -u https://example.com -r ./relative/path
 ```
 
@@ -57,10 +57,10 @@ The target repository is mounted read-only inside the worker container.
 Monitor progress:
 
 ```bash
-npx @keygraph/shannon logs [<workspace>]     # defaults to the single running scan, else the most recent
-npx @keygraph/shannon status [<workspace>]   # same default target; add --json for a machine-readable snapshot
-npx @keygraph/shannon scans
-npx @keygraph/shannon version
+npx @ezlkg/shn logs [<workspace>]     # defaults to the single running scan, else the most recent
+npx @ezlkg/shn status [<workspace>]   # same default target; add --json for a machine-readable snapshot
+npx @ezlkg/shn scans
+npx @ezlkg/shn version
 ```
 
 With no workspace, `logs` and `status` follow the single running scan; when several are running, name one.
@@ -91,9 +91,9 @@ open http://localhost:8233
 Stop Shannon:
 
 ```bash
-npx @keygraph/shannon stop [<workspace>] # stop one scan (defaults to the single running scan; confirms first; add --yes/-y to skip)
-npx @keygraph/shannon stop --all         # stop all scans (Temporal stays up)
-npx @keygraph/shannon reset              # stop everything and wipe all Temporal data (type 'confirm' to proceed; cannot be skipped)
+npx @ezlkg/shn stop [<workspace>] # stop one scan (defaults to the single running scan; confirms first; add --yes/-y to skip)
+npx @ezlkg/shn stop --all         # stop all scans (Temporal stays up)
+npx @ezlkg/shn reset              # stop everything and wipe all Temporal data (type 'confirm' to proceed; cannot be skipped)
 ```
 
 Source-build equivalents:
@@ -108,25 +108,25 @@ Usage examples:
 
 ```bash
 # Basic pentest.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo
 
 # With a configuration file.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml
 
 # Custom output directory.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -o ./my-reports
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -o ./my-reports
 
 # Named workspace.
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w q1-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w q1-audit
 
 # Stream the log until the scan finishes, then exit on its outcome (useful in CI).
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo --follow
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo --follow
 
 # Validate the configured login only, then stop (no pentest or report).
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml --validate-auth
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c /path/to/my-config.yaml --validate-auth
 
 # List running and completed scans.
-npx @keygraph/shannon scans
+npx @ezlkg/shn scans
 ```
 
 Source-build examples:

@@ -98,7 +98,7 @@ function renderStartOptions(): string {
 
 /**
  * Render the command list with the description column aligned. Padding is computed from the
- * widest command, so it lines up regardless of the prefix (`npx @keygraph/shannon` vs `./shannon`).
+ * widest command, so it lines up regardless of the prefix (`npx @ezlkg/shn` vs `./shannon`).
  */
 function renderUsage(prefix: string, mode: Mode): string {
   const rows: ReadonlyArray<readonly [string, string]> = [
@@ -165,7 +165,7 @@ Docs & source: https://github.com/KeygraphHQ/shannon
 }
 
 /**
- * First-run guidance for a bare `npx @keygraph/shannon` invocation when neither a
+ * First-run guidance for a bare `npx @ezlkg/shn` invocation when neither a
  * credentials file nor an exported shell credential exists. Walks the user to `setup`.
  */
 function showSetupPrompt(): void {

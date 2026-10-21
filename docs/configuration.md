@@ -12,7 +12,7 @@ Source-build mode resolves credentials from:
 `npx` mode resolves credentials from:
 
 1. Environment variables
-2. `~/.shannon/config.toml`, created by `npx @keygraph/shannon setup`
+2. `~/.shannon/config.toml`, created by `npx @ezlkg/shn setup`
 
 Environment variables always win, so you can override saved config for a single session without editing files.
 
@@ -27,7 +27,7 @@ cp configs/example-config.yaml ./my-app-config.yaml
 Run with:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -c ./my-app-config.yaml
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -c ./my-app-config.yaml
 ```
 
 Source-build equivalent:
@@ -185,7 +185,7 @@ login_flow:
 To confirm your login flow works before committing to a full scan, add `--validate-auth` to `start`:
 
 ```bash
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/repo -c config.yaml --validate-auth
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/repo -c config.yaml --validate-auth
 ```
 
 The run performs preflight and the single real login, then stops. No pentest, reconciliation, or report

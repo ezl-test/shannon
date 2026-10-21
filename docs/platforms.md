@@ -28,8 +28,8 @@ Install Docker Desktop on Windows and enable the WSL2 backend under **Settings >
 Run Shannon inside WSL:
 
 ```bash
-npx @keygraph/shannon setup
-npx @keygraph/shannon start -u https://your-app.com -r /path/to/your-repo
+npx @ezlkg/shn setup
+npx @ezlkg/shn start -u https://your-app.com -r /path/to/your-repo
 ```
 
 Source-build equivalent:
@@ -58,7 +58,7 @@ macOS works with Docker Desktop installed.
 Docker containers cannot reach `localhost` on your host machine. Use `host.docker.internal` instead:
 
 ```bash
-npx @keygraph/shannon start -u http://host.docker.internal:3000 -r /path/to/repo
+npx @ezlkg/shn start -u http://host.docker.internal:3000 -r /path/to/repo
 ```
 
 Source-build equivalent:

@@ -21,25 +21,25 @@ Shannon uses workspaces to store scan state, logs, prompts, and deliverables. Wo
 Start with a named workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w my-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w my-audit
 ```
 
 Resume the same workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w my-audit
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w my-audit
 ```
 
 Resume an auto-named workspace:
 
 ```bash
-npx @keygraph/shannon start -u https://example.com -r /path/to/repo -w example-com_shannon-1771007534808
+npx @ezlkg/shn start -u https://example.com -r /path/to/repo -w example-com_shannon-1771007534808
 ```
 
 List running and completed scans:
 
 ```bash
-npx @keygraph/shannon scans
+npx @ezlkg/shn scans
 ```
 
 Source-build equivalents:
