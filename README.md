@@ -25,7 +25,6 @@ npx @ezlkg/shn@latest
 
 <sub>The interactive launcher will guide you through setup and your first pentest.</sub>
 
-**Run Shannon in GitHub Actions:** [Setup, inputs, credentials, and workflow examples](docs/github-action.md).
 
 ---
 
@@ -199,7 +198,7 @@ A code-analysis hypothesis does not fail the pipeline. Severity gates count only
 
 ### GitHub Actions
 
-See the [Shannon GitHub Action guide](docs/github-action.md) for setup, inputs, outputs, credentials, version selection, and example workflows. The `v3` alias becomes available after the first combined product and Action release.
+**Run Shannon in GitHub Actions:** [Setup, inputs, credentials, and workflow examples](docs/github-action.md).
 
 ```yaml
 name: Shannon Pentest

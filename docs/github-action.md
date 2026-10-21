@@ -1,11 +1,3 @@
-<div align="center">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../assets/github-banner-dark.png">
-  <source media="(prefers-color-scheme: light)" srcset="../assets/github-banner-light.png">
-  <img src="../assets/github-banner-light.png" alt="Shannon, AI Pentester for Web Apps and APIs, by Keygraph" width="100%">
-</picture>
-</div>
-
 # Shannon GitHub Action
 
 Run [Shannon](../README.md), Keygraph's autonomous white-box AI pentester, from a GitHub Actions workflow. Shannon reads your source code, maps the attack surface, and exploits real vulnerabilities against a running target, then hands you a security assessment report. This action is a thin wrapper around the [`@ezlkg/shn`](https://www.npmjs.com/package/@ezlkg/shn) CLI.
@@ -20,8 +12,6 @@ Every run uploads two artifacts:
 The job also writes a findings summary and artifact download links to the run's Summary tab, and the same as a plain-text footer at the end of the job log.
 
 ## Quick start
-
-The `v3` alias below becomes available after the first combined product and Action release.
 
 ```yaml
 name: Security scan
@@ -45,7 +35,7 @@ jobs:
 
 ## Version selection
 
-The Action shares Shannon's GitHub release tags. Use a full release tag to pin the Action code, or `v3` / `v3.x` aliases for compatible updates after those aliases are published.
+The Action shares Shannon's GitHub release tags. Use a full release tag to pin the Action code, or `v3` / `v3.x` aliases for compatible updates.
 
 The CLI version is a separate input, defaulting to the value maintained in [`action.yml`](../action.yml) (currently `3.4.1`). A new Action release does not automatically change that default. Maintainers bump it manually when needed; callers can override it with `version: '3.4.1'`. The selected CLI pulls the matching `ezlkgps/shannon` Docker image version.
 
